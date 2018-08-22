@@ -12,7 +12,7 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<form action="download_images" method="post">
+	<form action="/download_images" method="post">
 		<div class="container">
 			<h3>Images List</h3>
 			<nav class="navbar navbar-default">
@@ -44,9 +44,9 @@
 				<c:forEach items="${photos}" var="photo_id">
 					<tr>
 						<td><input type="checkbox" name="toDo[]" value="${photo_id}"
-							id="checkbox_${photo_id}" onclick="robotForm(this.form)"></td>
-						<td><a href="/Lesson7HomeWorkEx1SpringMVC/photo/${photo_id}">${photo_id}</a></td>
-						<td><img src="/Lesson7HomeWorkEx1SpringMVC/photo/${photo_id}"
+							id="checkbox_${photo_id}"></td>
+						<td><a href="/photo/${photo_id}">${photo_id}</a></td>
+						<td><img src="/photo/${photo_id}"
 							height="100" alt="${photo_id}" />
 				</c:forEach>
 			</table>
@@ -68,12 +68,12 @@
 				$(":checked").each(function() {
 					data['toDelete[]'].push($(this).val());
 				});
-				$.post("./delete_images", data, function(data, status) {
+				$.post("/delete_images", data, function(data, status) {
 					window.location.reload();
 				});
 			});
 			$('#go_back').click(function() {
-				window.location.href = './';
+				window.location.href = '/';
 			});
 		</script>
 	</form>

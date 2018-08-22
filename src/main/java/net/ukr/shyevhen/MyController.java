@@ -15,13 +15,13 @@ import java.util.Set;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.IOUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.integration.support.MessageBuilder;
 import org.springframework.integration.zip.ZipHeaders;
-import org.springframework.integration.zip.transformer.ZipResultType;
 import org.springframework.integration.zip.transformer.ZipTransformer;
 import org.springframework.messaging.Message;
 import org.springframework.stereotype.Controller;
@@ -35,6 +35,8 @@ import org.springframework.web.multipart.MultipartFile;
 @Controller
 @RequestMapping("/")
 public class MyController {
+	@Autowired
+	private ZipTransformer zip;
 	private static final int ITEMS_PER_PAGE = 10;
 	private Map<Long, byte[]> photos = new HashMap<Long, byte[]>();
 
@@ -133,11 +135,6 @@ public class MyController {
 	@RequestMapping(value = "/download_images", method = RequestMethod.POST)
 	public void download(@RequestParam(value = "toDo[]", required = false) long[] toDownload, HttpServletResponse resp) {
 		if (toDownload != null && toDownload.length > 0) {
-			ZipTransformer zip = new ZipTransformer();
-			zip.setCompressionLevel(3);
-			zip.setZipResultType(ZipResultType.FILE);
-			zip.setWorkDirectory(new File("."));
-			zip.afterPropertiesSet();
 			List<byte[]> images = new ArrayList<>();
 			for (int i = 0; i < toDownload.length; i += 1) {
 				images.add(photos.get(toDownload[i]));

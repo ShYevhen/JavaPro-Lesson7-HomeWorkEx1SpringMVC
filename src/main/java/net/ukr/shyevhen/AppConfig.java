@@ -28,10 +28,10 @@ public class AppConfig {
         return resolver;
     }
 
-    @Bean
-    public CommonsMultipartResolver multipartResolver() {
-        return new CommonsMultipartResolver();
-    }
+//    @Bean
+//    public CommonsMultipartResolver multipartResolver() {
+//        return new CommonsMultipartResolver();
+//    }
     
     @Bean
     @Transformer(inputChannel = "input", outputChannel = "output")

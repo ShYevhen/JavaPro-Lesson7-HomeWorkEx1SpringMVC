@@ -5,16 +5,16 @@
   </head>
   <body>
      <div align="center">
-        <form action="/Lesson7HomeWorkEx1SpringMVC/view" method="POST">
+        <form action="/view" method="POST">
             Photo id: <input type="text" name="photo_id">
             <input type="submit" />
         </form>
 
-        <form action="/Lesson7HomeWorkEx1SpringMVC/add_photo" enctype="multipart/form-data" method="POST">
+        <form action="/add_photo" enctype="multipart/form-data" method="POST">
             Photo: <input type="file" name="photo">
             <input type="submit" />
         </form>
-       	<form action="/Lesson7HomeWorkEx1SpringMVC/view_all" enctype="multipart/form-data" method="GET">
+       	<form action="/view_all" enctype="multipart/form-data" method="GET">
             <input type="submit" value="View all"/>
         </form> 
       </div>
